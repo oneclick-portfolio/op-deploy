@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ececec" />
-  <title>Portfolio Builder</title>
+  <title>One-Click Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -549,7 +549,7 @@
     <header class="topbar">
       <a class="brand" href="#top">
         <span class="brand-mark" aria-hidden="true"></span>
-        <span id="brandName">Kinetic Terminal</span>
+        <span id="brandName">One-Click Portfolio</span>
       </a>
       <nav class="topnav" aria-label="Primary">
         <a class="chip" href="#landing">How it Works</a>
@@ -564,61 +564,56 @@
     <section id="landing" class="headline" aria-label="Landing Page">
       <div>
         <span class="eyebrow">Portfolio OS</span>
-        <h1 id="heroName">Build and Deploy Your Portfolio in One Click</h1>
-        <p id="heroSub">The fastest, open-source way to showcase your skills. Import your rxresu.me JSON, choose a theme, and publish live in minutes.</p>
+        <h1 id="heroName">Build and deploy your portfolio in one click</h1>
+        <p id="heroSub">Import your rxresu.me JSON, pick a theme, and publish to GitHub Pages.</p>
         <div class="hero-actions">
-          <button class="btn btn-primary" id="heroConnectBtn" type="button">Get Started • It is Free</button>
+          <button class="btn btn-primary" id="heroConnectBtn" type="button">Get Started</button>
           <a class="btn" href="https://github.com/a0n0d8h/imarinzone.github.io/fork" target="_blank" rel="noopener">Fork on GitHub</a>
         </div>
       </div>
       <article class="terminal-card" aria-label="Deployment terminal preview">
-        <div class="terminal-top">kinetic-terminal-path</div>
+        <div class="terminal-top">deploy-log</div>
         <pre class="terminal-lines" id="terminalLog">Deploying resume repo...
-Scaffolding static files
-Pushing build artifacts
-Success: theme selection complete
-Success: oauth token cached
-Success: pages site created
-Success: domain mapped
-Success: deployment live</pre>
+      Creating static site
+      Pushing theme files
+      Configuring GitHub Pages
+      Deployment complete</pre>
       </article>
     </section>
 
     <section id="auth" class="step-section">
-      <h2 class="section-title">Step 1: Connect Your GitHub Account</h2>
-      <p class="section-sub">To deploy your portfolio, we need permission to create a repository and push the initial codebase. We never access private repos.</p>
+      <h2 class="section-title">Step 1: Connect GitHub</h2>
+      <p class="section-sub">Connect GitHub to create a repository and deploy your portfolio.</p>
       <article class="panel auth-panel">
-        <h3 id="authStatusTitle">Authorize Deployment Access</h3>
+        <h3 id="authStatusTitle">Authorize access</h3>
         <ul>
-          <li>Repository Creation: automated setup of a new public repository for your portfolio.</li>
-          <li>Initial Deployment: pushes selected theme files to the freshly created repository.</li>
-          <li>No Private Access: scoped token only for deployment workflow actions.</li>
+          <li>Create a new public portfolio repository.</li>
+          <li>Push your selected theme and resume data.</li>
+          <li>Use scoped access for deployment only.</li>
         </ul>
         <a class="btn btn-primary" id="ghConnectBtn" href="#">Authorize GitHub</a>
         <button class="btn btn-ghost" id="ghDisconnectBtn" type="button" hidden>Disconnect</button>
         <p class="auth-note" id="ghStatus">GitHub App not connected</p>
         <ul class="mini-list" style="margin-top: 10px;">
-          <li>When prompted during app install, choose <strong>All repositories</strong> for easiest setup.</li>
-          <li>If you choose <strong>Only select repositories</strong>, include the repo you want to deploy to.</li>
-          <li>You can change repository access later from GitHub App installation settings.</li>
+          <li>Tip: choose <strong>All repositories</strong> during app install for the easiest setup.</li>
         </ul>
       </article>
     </section>
 
     <section id="import-data" class="step-section" hidden>
-      <h2 class="section-title">Step 2: Import Your Data</h2>
-      <p class="section-sub">Use your rxresu.me exported resume JSON, then choose a visual style before deployment.</p>
+      <h2 class="section-title">Step 2: Import Data</h2>
+      <p class="section-sub">Upload your rxresu.me JSON file and validate it.</p>
       <div class="cards-2">
         <article class="panel">
           <h3>rxresu.me JSON</h3>
-          <p>Upload your exported resume schema to keep your details structured. We validate it against the official schema before continuing.</p>
+          <p>Upload your exported resume JSON. We validate it against the official schema.</p>
           <input class="field" id="resumeJsonFile" type="file" accept="application/json" />
           <button class="btn btn-primary" id="validateResumeBtn" type="button">Validate and Continue</button>
           <p class="upload-status" id="resumeUploadStatus">No JSON validated yet.</p>
         </article>
         <article class="panel">
           <h3>How to Export from rxresu.me</h3>
-          <p>Open the editor, complete your profile, then export/download your JSON and upload it here.</p>
+          <p>Export your resume JSON from the editor, then upload it here.</p>
           <a class="btn" href="https://rxresu.me/editor" target="_blank" rel="noopener">Open rxresu.me Editor</a>
           <ul class="mini-list" style="margin-top: 10px;">
             <li>Go to your resume in the rxresu.me editor.</li>
@@ -631,7 +626,7 @@ Success: deployment live</pre>
 
     <section id="theme-step" class="step-section" hidden>
       <h2 class="section-title">Step 3: Choose a Theme</h2>
-      <p class="section-sub">Pick one theme to deploy. You can still open any theme preview directly.</p>
+      <p class="section-sub">Select one theme for deployment.</p>
       <div class="theme-grid" role="radiogroup" aria-label="Theme selection">
         <article class="theme-card">
           <div class="theme-preview" style="background: linear-gradient(120deg, #073449, #1896ac);"></div>
@@ -640,7 +635,7 @@ Success: deployment live</pre>
               <h3 class="theme-name">Modern</h3>
               <span class="tag">Featured</span>
             </div>
-            <p>Clean visual hierarchy with contemporary spacing and typography.</p>
+            <p>Clean and minimal layout.</p>
             <div class="theme-actions">
               <label class="radio"><input type="radio" name="theme" value="modern" checked /> Select</label>
               <a class="btn" href="./themes/modern/index.html">Open</a>
@@ -655,7 +650,7 @@ Success: deployment live</pre>
               <h3 class="theme-name">Newspaper</h3>
               <span class="tag">Classic</span>
             </div>
-            <p>Editorial style with serif-heavy typographic rhythm and clear sections.</p>
+            <p>Editorial layout with classic typography.</p>
             <div class="theme-actions">
               <label class="radio"><input type="radio" name="theme" value="newspaper" /> Select</label>
               <a class="btn" href="./themes/newspaper/index.html">Open</a>
@@ -670,7 +665,7 @@ Success: deployment live</pre>
               <h3 class="theme-name">Graphic</h3>
               <span class="tag">Bold</span>
             </div>
-            <p>Bold, design-forward layout for visually expressive project showcases.</p>
+            <p>Bold layout for visual portfolios.</p>
             <div class="theme-actions">
               <label class="radio"><input type="radio" name="theme" value="graphic" /> Select</label>
               <a class="btn" href="./themes/graphic/index.html">Open</a>
@@ -685,7 +680,7 @@ Success: deployment live</pre>
               <h3 class="theme-name">VS Code</h3>
               <span class="tag">Code</span>
             </div>
-            <p>A monospace workspace feel for hands-on developer portfolios.</p>
+            <p>Monospace style for developer portfolios.</p>
             <div class="theme-actions">
               <label class="radio"><input type="radio" name="theme" value="vscode" /> Select</label>
               <a class="btn" href="./themes/vscode/index.html">Open</a>
@@ -700,19 +695,19 @@ Success: deployment live</pre>
 
     <section id="deployment" class="step-section" hidden>
       <h2 class="section-title">Step 4: Deploy Your Portfolio</h2>
-      <p class="section-sub">Choose your repository name and deploy the selected theme to GitHub Pages in one action.</p>
+      <p class="section-sub">Set a repository name and deploy to GitHub Pages.</p>
       <div class="deploy-layout">
         <article class="panel">
-          <span class="eyebrow">Deployment Successful</span>
+          <span class="eyebrow">Deployment</span>
           <h3>Publish in one click</h3>
-          <p>Deploy creates a new repository and configures your Pages URL automatically.</p>
+          <p>Create a repository and publish your site automatically.</p>
           <input class="url-field" id="repositoryName" type="text" value="portfolio-modern" aria-label="Repository name" />
           <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
             <button class="btn btn-primary" id="deployButton" type="button">Deploy Selected Theme</button>
             <button class="btn" id="copyLinkBtn" type="button" disabled>Copy Link</button>
           </div>
           <p class="status-line" id="deployStatusLine">Waiting for authorization.</p>
-          <p class="auth-note" style="margin-top: 6px;">Deployment can fail if your GitHub App installation does not include this repository.</p>
+          <p class="auth-note" style="margin-top: 6px;">If deployment fails, check your GitHub App repository permissions.</p>
           <div class="deploy-result" id="deployResult" hidden>
             Live URL: <a id="deployPagesUrl" href="#" target="_blank" rel="noopener">Open live site</a>
           </div>
@@ -723,24 +718,24 @@ Success: deployment live</pre>
         </article>
 
         <article class="panel">
-          <h3>Engineered for Performance</h3>
-          <p>Optimized around clean HTML, responsive CSS, and minimal runtime JavaScript.</p>
+          <h3>What you get</h3>
+          <p>Simple static output that is fast and easy to customize.</p>
           <ul class="mini-list">
-            <li>Built on rxresu.me schema and your existing resume data.</li>
-            <li>Deploy pipeline writes static assets for fast global delivery.</li>
-            <li>Themes are lightweight and easy to fork or extend.</li>
+            <li>Uses your rxresu.me resume data.</li>
+            <li>Deploys static files for fast loading.</li>
+            <li>Themes are lightweight and easy to edit.</li>
           </ul>
           <div style="margin-top: 14px; border: 1px solid #111; border-radius: 12px; padding: 12px; background: #fafafa;">
-            <strong id="footerName">Kinetic Terminal</strong>
-            <p style="margin: 8px 0 0; font-size: 12px; color: #555;">Join the core community and ship your portfolio faster.</p>
+            <strong id="footerName">One-Click Portfolio</strong>
+            <p style="margin: 8px 0 0; font-size: 12px; color: #555;">Open source portfolio deployment for GitHub Pages.</p>
           </div>
         </article>
       </div>
     </section>
 
     <footer class="footer">
-      <span>Documentation · Privacy · Support</span>
-      <span id="footerTag">Built for high-performance developer portfolios.</span>
+      <span>Open Source · GitHub Pages</span>
+      <span id="footerTag">Import, theme, deploy.</span>
     </footer>
   </main>
 
@@ -960,7 +955,7 @@ Success: deployment live</pre>
           if (!response.ok) {
             isAuthed = false;
             setStatus('GitHub App not connected');
-            authStatusTitle.textContent = 'Authorize Deployment Access';
+            authStatusTitle.textContent = 'Authorize access';
             ghConnectBtn.hidden = false;
             ghDisconnectBtn.hidden = true;
             setConnectTargets(authStartUrl(), 'Authorize GitHub');
@@ -1000,7 +995,7 @@ Success: deployment live</pre>
           } else {
             setStatus('Connected as @' + login);
           }
-          authStatusTitle.textContent = 'Connected and Ready';
+          authStatusTitle.textContent = 'Connected';
           ghConnectBtn.hidden = true;
           ghDisconnectBtn.hidden = false;
           setConnectTargets(authStartUrl(), 'Connected');
@@ -1084,7 +1079,7 @@ Success: deployment live</pre>
       });
 
       if (window.location.search.indexOf('connected=1') !== -1) {
-        setStatus('GitHub App connected. Continue with step 2.');
+        setStatus('GitHub connected. Continue to step 2.');
         window.history.replaceState({}, document.title, window.location.pathname);
       }
 
