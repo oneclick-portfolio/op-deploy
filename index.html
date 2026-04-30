@@ -4,32 +4,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#ececec" />
+  <meta name="theme-color" content="#0a0a0a" />
   <title>One-Click Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <!-- Matter font fallback: using system fonts with geometric sans-serif -->
+  <style>
+    @font-face {
+      font-family: 'Matter';
+      src: url('https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fonts/Phosphor-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Matter';
+      src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+      font-weight: 500;
+      font-display: swap;
+    }
+  </style>
   <style>
     :root {
-      --primary: #00615b;
-      --primary-container: #0e7c74;
-      --primary-fixed: #98f2e8;
-      --surface: #f9f9f9;
-      --surface-container-low: #f4f3f3;
-      --surface-container-high: #e8e8e8;
-      --surface-container-lowest: #ffffff;
-      --inverse-surface: #2f3131;
-      --on-surface: #1a1c1c;
-      --on-surface-variant: #3e4947;
-      --outline-variant: #bdc9c6;
-      --border-ghost: rgba(189, 201, 198, 0.25);
-      --shadow-diffused: 0 20px 40px rgba(0, 97, 91, 0.06);
-      --error: #ba1a1a;
-      --radius: 1.5rem;
+      --background: #0a0a0a;
+      --surface: #141313;
+      --surface-container: #201f1f;
+      --surface-container-low: #1c1b1b;
+      --surface-container-high: #2a2a29;
+      --surface-container-highest: #353434;
+      --surface-container-lowest: #0e0e0e;
+      --surface-bright: #3a3939;
+      --surface-variant: #353434;
+      --surface-tint: #c7c6c4;
+      --on-surface: #e5e2e1;
+      --on-surface-variant: #c5c7c3;
+      --on-background: #e5e2e1;
+      --warm-parchment: #faf9f6;
+      --stone-gray: #868584;
+      --ash-gray: #afaeac;
+      --earth-gray: #353534;
+      --deep-void: #0a0a0a;
+      --mist-border: rgba(226, 226, 226, 0.35);
+      --frosted-veil: rgba(255, 255, 255, 0.04);
+      --primary: #faf9f6;
+      --primary-container: #e3e2e0;
+      --primary-fixed: #e3e2e0;
+      --inverse-surface: #e5e2e1;
+      --outline-variant: #444844;
+      --border-ghost: rgba(226, 226, 226, 0.1);
+      --shadow-diffused: 0 20px 40px rgba(0, 0, 0, 0.3);
+      --error: #ffb4ab;
+      --radius: 0.75rem;
+      --section-gap: 120px;
     }
 
     [hidden] {
@@ -46,10 +75,17 @@
     body {
       margin: 0;
       padding: 0;
-      background: var(--surface);
-      color: var(--on-surface);
-      font-family: "Inter", Arial, sans-serif;
+      background: var(--deep-void);
+      color: var(--warm-parchment);
+      font-family: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 400;
       min-height: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
     body.is-loading {
@@ -63,7 +99,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: #ffffff;
+      background-color: #0a0a0a;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -81,7 +117,7 @@
     /* Target the paths inside the SVG */
     .text-svg path {
       /* 1. Set up the pen stroke */
-      stroke: #000000;
+      stroke: #faf9f6;
       stroke-width: 2px;
 
       /* FORCES the inside of the letters to remain completely hollow/transparent */
@@ -139,9 +175,9 @@
       padding: 14px 24px;
       margin: -20px -20px 32px;
       backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid var(--border-ghost);
-      border-radius: 999px;
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid var(--mist-border);
+      border-radius: 0.75rem;
     }
 
     @media (min-width: 760px) {
@@ -154,10 +190,11 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      font-size: 15px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      letter-spacing: 0px;
+      font-size: 16px;
+      color: var(--warm-parchment);
     }
 
     .brand-mark {
@@ -165,7 +202,8 @@
       height: 28px;
       display: inline-block;
       image-rendering: pixelated;
-      mix-blend-mode: multiply;
+      mix-blend-mode: screen;
+      filter: invert(1) brightness(1.2);
       animation: cursor-float 1.5s ease-in-out infinite;
     }
 
@@ -180,42 +218,43 @@
     .chip {
       padding: 8px 16px;
       border-radius: 999px;
-      background: var(--surface-container-high);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
-      font-weight: 500;
-      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--earth-gray);
+      font-family: "Geist Mono", monospace;
+      font-size: 16px;
+      font-weight: 400;
+      transition: background 0.2s ease, opacity 0.2s ease;
       border: none;
+      color: var(--ash-gray);
+      cursor: pointer;
+      letter-spacing: 0px;
     }
 
     .chip:hover,
     .chip:focus-visible {
-      background: var(--surface-container-lowest);
-      box-shadow: var(--shadow-diffused);
-      transform: translateY(-2px);
+      background: var(--stone-gray);
       outline: none;
     }
 
     .btn {
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--border-ghost);
-      color: var(--on-surface);
-      font-family: "Space Grotesk", sans-serif;
+      background: var(--earth-gray);
+      border: none;
+      color: var(--ash-gray);
+      font-family: "Poppins", sans-serif;
       font-weight: 500;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      transition: opacity 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      letter-spacing: 0px;
     }
 
     .btn:hover,
     .btn:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-diffused);
+      opacity: 0.85;
       outline: none;
     }
 
@@ -227,10 +266,15 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-container));
-      color: #fff;
+      background: var(--earth-gray);
+      color: var(--warm-parchment);
       border: none;
-      font-weight: 600;
+      font-weight: 500;
+    }
+    
+    .btn-primary:hover {
+      background: var(--stone-gray);
+      opacity: 1;
     }
 
     .btn-ghost {
@@ -252,38 +296,51 @@
       margin-top: 80px;
       margin-bottom: 80px;
       animation: rise 0.45s ease both;
+      padding-top: 40px;
     }
 
     .eyebrow {
       display: inline-flex;
       gap: 6px;
       align-items: center;
-      background: var(--surface-container-low);
+      background: transparent;
       border-radius: 999px;
       padding: 6px 14px;
       font-size: 12px;
-      font-family: ui-monospace, SFMono-Regular, monospace;
-      font-weight: 500;
+      font-family: "Geist Mono", monospace;
+      font-weight: 400;
       margin-bottom: 24px;
       border: none;
-      color: var(--primary);
+      color: var(--stone-gray);
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
     }
 
     .headline h1 {
       margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2.5rem, 6vw, 3.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      font-weight: 700;
+      font-family: "Poppins", sans-serif;
+      font-size: 80px;
+      line-height: 1.00;
+      letter-spacing: -2.4px;
+      font-weight: 400;
+      color: var(--warm-parchment);
+    }
+    
+    @media (max-width: 768px) {
+      .headline h1 {
+        font-size: 48px;
+        letter-spacing: -1.5px;
+      }
     }
 
     .headline p {
       margin: 24px auto 0;
-      color: var(--on-surface-variant);
-      font-size: 18px;
+      color: var(--ash-gray);
+      font-size: 20px;
+      font-weight: 400;
       max-width: 40ch;
-      line-height: 1.6;
+      line-height: 1.40;
+      letter-spacing: -0.2px;
     }
 
     .hero-actions {
@@ -299,21 +356,31 @@
     .section-title {
       margin: 80px auto 16px;
       text-align: center;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2rem, 4vw, 2.5rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+      font-size: 56px;
+      line-height: 1.20;
+      letter-spacing: -0.56px;
+      font-weight: 400;
+      color: var(--warm-parchment);
       animation: rise 0.45s ease both;
+    }
+    
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 40px;
+        letter-spacing: -0.4px;
+      }
     }
 
     .section-sub {
       margin: 0 auto 32px;
       text-align: center;
-      color: var(--on-surface-variant);
+      color: var(--stone-gray);
       max-width: 50ch;
-      line-height: 1.6;
-      font-size: 1.1rem;
+      line-height: 1.40;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.2px;
     }
 
     .step-section {
@@ -369,10 +436,10 @@
     }
 
     .panel {
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--border-ghost);
-      border-radius: 1.5rem;
-      box-shadow: var(--shadow-diffused);
+      background: var(--deep-void);
+      border: 1px solid var(--mist-border);
+      border-radius: 0.75rem;
+      box-shadow: none;
       padding: 40px;
       animation: rise 0.4s ease both;
       text-align: center;
@@ -380,27 +447,33 @@
 
     .panel h3 {
       margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.5rem;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
+      font-family: "Poppins", sans-serif;
+      font-size: 24px;
+      line-height: 1.20;
+      letter-spacing: -0.72px;
+      font-weight: 400;
       margin-bottom: 12px;
+      color: var(--warm-parchment);
     }
 
     .panel p {
       margin: 0 0 24px;
-      color: var(--on-surface-variant);
-      line-height: 1.5;
-      font-size: 15px;
+      color: var(--ash-gray);
+      line-height: 1.30;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.18px;
     }
 
     .mini-list {
       margin: 0;
       padding: 0;
       list-style-position: inside;
-      color: var(--on-surface-variant);
-      font-size: 14px;
-      line-height: 1.6;
+      color: var(--ash-gray);
+      font-size: 18px;
+      line-height: 1.30;
+      font-weight: 400;
+      letter-spacing: -0.18px;
     }
 
     .mini-list li {
@@ -410,15 +483,18 @@
     .field,
     .url-field {
       width: 100%;
-      border: 1px solid transparent;
-      border-radius: 1.5rem;
+      border: 1px solid var(--mist-border);
+      border-radius: 0.75rem;
       padding: 16px 20px;
-      background: var(--surface-container-low);
-      color: var(--on-surface);
-      font-size: 15px;
+      background: transparent;
+      color: var(--warm-parchment);
+      font-size: 18px;
       margin-bottom: 16px;
       transition: background 0.2s, border 0.2s, box-shadow 0.2s;
       outline: none;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      letter-spacing: -0.18px;
     }
 
     .field[type="file"] {
@@ -447,9 +523,9 @@
 
     .field:focus,
     .url-field:focus {
-      background: var(--surface-container-lowest);
-      border: 1px solid rgba(0, 97, 91, 0.4);
-      box-shadow: 0 0 0 4px rgba(0, 97, 91, 0.05);
+      background: var(--deep-void);
+      border: 1px solid var(--warm-parchment);
+      box-shadow: none;
     }
 
     .auth-panel {
@@ -466,10 +542,11 @@
     .auth-note {
       margin-top: 20px;
       display: block;
-      font-family: ui-monospace, monospace;
-      font-size: 12px;
-      color: var(--on-surface-variant);
-      line-height: 1.5;
+      font-family: "Geist Mono", monospace;
+      font-size: 14px;
+      color: var(--stone-gray);
+      line-height: 1.40;
+      font-weight: 400;
     }
 
     .auth-flow {
@@ -484,9 +561,9 @@
       align-items: center;
       gap: 12px;
       padding: 10px 12px;
-      border: 1px solid var(--border-ghost);
-      border-radius: 12px;
-      background: var(--surface-container-low);
+      border: 1px solid var(--mist-border);
+      border-radius: 0.75rem;
+      background: var(--deep-void);
     }
 
     .auth-flow-badge {
@@ -513,42 +590,47 @@
 
     .auth-flow-title {
       margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0px;
+      color: var(--warm-parchment);
     }
 
     .auth-flow-sub {
       margin: 2px 0 0;
-      font-size: 12px;
-      color: var(--on-surface-variant);
+      font-size: 14px;
+      color: var(--stone-gray);
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      letter-spacing: 0px;
     }
 
     .upload-status {
       margin-top: 16px;
       display: block;
-      font-family: ui-monospace, monospace;
-      font-size: 12px;
-      color: var(--primary);
+      font-family: "Geist Mono", monospace;
+      font-size: 14px;
+      color: var(--warm-parchment);
       min-height: 1.2em;
+      font-weight: 400;
     }
 
     .theme-card {
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--border-ghost);
-      border-radius: 1.5rem;
+      background: var(--deep-void);
+      border: 1px solid var(--mist-border);
+      border-radius: 0.75rem;
       overflow: hidden;
       display: block;
       color: inherit;
-      box-shadow: var(--shadow-diffused);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      box-shadow: none;
+      transition: border-color 0.3s ease, background 0.3s ease;
     }
-
+    
     .theme-card:hover,
     .theme-card:focus-within {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 56px rgba(0, 97, 91, 0.12);
+      border-color: var(--warm-parchment);
+      background: var(--deep-void);
     }
 
     .theme-preview {
@@ -604,12 +686,18 @@
       margin-bottom: 8px;
     }
 
+    .field::placeholder,
+    .url-field::placeholder {
+      color: var(--stone-gray);
+    }
+    
     .theme-name {
       margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 20px;
-      letter-spacing: -0.02em;
-      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+      font-size: 22px;
+      letter-spacing: 0px;
+      font-weight: 500;
+      color: var(--warm-parchment);
     }
 
     .tag {
@@ -759,6 +847,37 @@
       box-shadow: 0 36px 64px rgba(0, 97, 91, 0.2);
       z-index: 6;
       transition-delay: 0s;
+      cursor: pointer;
+      border: 2px solid var(--warm-parchment);
+    }
+    
+    .theme-showcase .theme-card.is-active input[type=\"radio\"] {
+      cursor: pointer;
+    }
+    
+    .showcase-cta {
+      text-align: center;
+      padding: 24px 0;
+      animation: rise 0.4s ease both;
+    }
+    
+    .showcase-selection-status {
+      font-size: 16px;
+      color: var(--ash-gray);
+      margin: 16px 0;
+      opacity: 0;
+      animation: slideInUp 0.3s ease 0.1s forwards;
+    }
+    
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .theme-showcase .theme-card.is-neighbor {
@@ -844,9 +963,57 @@
       align-items: center;
       gap: 8px;
       font-size: 14px;
-      font-family: "Space Grotesk", sans-serif;
+      font-family: "Poppins", sans-serif;
       font-weight: 500;
       cursor: pointer;
+      color: var(--warm-parchment);
+    }
+    
+    .radio input[type="radio"] {
+      cursor: pointer;
+      accent-color: var(--warm-parchment);
+    }
+    
+    .theme-showcase .theme-body .radio {
+      font-size: 16px;
+      justify-content: center;
+      color: var(--ash-gray);
+    }
+    
+    .theme-showcase .theme-card.is-active .radio {
+      color: var(--warm-parchment);
+      font-weight: 500;
+    }
+
+    .theme-showcase-carousel .radio {
+      display: none !important;
+    }
+
+    #themeStepGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    #themeStepGrid .theme-card {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #themeStepGrid .theme-card:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+    }
+
+    #themeStepGrid .theme-card input[type="radio"]:checked + .theme-body,
+    #themeStepGrid .theme-card.is-active {
+      border-color: var(--warm-parchment);
+      box-shadow: 0 0 0 2px var(--frosted-veil);
+    }
+
+    #themeStepGrid .theme-card.is-active .theme-name {
+      color: var(--warm-parchment);
     }
 
     .deploy-layout {
@@ -854,6 +1021,195 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 24px;
       align-items: start;
+    }
+
+    .deploy-preview-panel {
+      text-align: left;
+    }
+
+    .deploy-preview-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .deploy-preview-panel h3 {
+      margin-bottom: 10px;
+    }
+
+    .deploy-preview-panel > p {
+      margin-bottom: 20px;
+    }
+
+    .deploy-preview-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-ghost);
+      color: var(--ash-gray);
+      background: var(--frosted-veil);
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .deploy-preview-shell {
+      position: relative;
+      min-height: 380px;
+      border-radius: 18px;
+      border: 1px solid var(--mist-border);
+      background: var(--surface-container-lowest);
+      overflow: hidden;
+    }
+
+    .deploy-preview-empty,
+    .deploy-preview-loading,
+    .deploy-preview-live,
+    .deploy-preview-error {
+      min-height: 380px;
+    }
+
+    .deploy-preview-empty,
+    .deploy-preview-error {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      padding: 28px;
+      text-align: center;
+      color: var(--stone-gray);
+    }
+
+    .deploy-preview-theme-image {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 14px;
+      border: 1px solid var(--border-ghost);
+      background: var(--surface-container-low);
+    }
+
+    .deploy-preview-empty-copy,
+    .deploy-preview-error-copy {
+      max-width: 34ch;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .deploy-preview-browser-chrome,
+    .deploy-preview-frame-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-ghost);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .deploy-preview-browser-chrome span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--outline-variant);
+    }
+
+    .deploy-preview-loading-body {
+      min-height: 327px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .deploy-preview-loader-ring {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--border-ghost);
+      border-top-color: var(--warm-parchment);
+      animation: spin 0.9s linear infinite;
+    }
+
+    .deploy-preview-loading-title,
+    .deploy-preview-error-title {
+      margin: 0;
+      color: var(--warm-parchment);
+      font-size: 18px;
+      letter-spacing: -0.18px;
+    }
+
+    .deploy-preview-loading-copy {
+      margin: 0;
+      max-width: 30ch;
+      color: var(--stone-gray);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .deploy-preview-live {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deploy-preview-frame-url {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--stone-gray);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .deploy-preview-frame-wrap {
+      position: relative;
+      flex: 1;
+      min-height: 327px;
+      background: var(--surface-container-lowest);
+    }
+
+    .deploy-preview-frame-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: var(--stone-gray);
+      background: rgba(10, 10, 10, 0.88);
+      z-index: 1;
+      font-size: 14px;
+      letter-spacing: -0.14px;
+    }
+
+    .deploy-preview-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 327px;
+      border: 0;
+      background: #fff;
+    }
+
+    .deploy-preview-actions {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .status-line {
@@ -1323,6 +1679,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="stitch_assets/dark_patch.css" />
 </head>
 
 <body class="is-loading">
@@ -1369,67 +1726,64 @@
 
   <div id="preStepsContent">
 
-    <section id="landing" class="headline" aria-label="Landing Page">
-      <div>
-        <h1 id="heroName">Build and deploy your portfolio in one <span class="cursor-target">click<img src="cursor.png"
-              class="pixel-cursor" alt=""></span></h1>
+    <section id="landing" class="headline" aria-label="Landing Page" style="position:relative; min-height:720px;">
+      <div class="hero-bg-overlay"></div>
+      <div style="z-index:1; display:flex; flex-direction:column; align-items:center; gap:32px;">
+        <h1 id="heroName">Deploy your developer portfolio in seconds.</h1>
+        <p>Grounded in simplicity. Connect your GitHub, upload your resume, choose a theme, and let us handle the rest. No configuration required.</p>
+        <div class="hero-actions">
+          <button class="btn" id="topbarGetStartedBtn2" type="button" style="padding:14px 32px; border-radius:9999px;">Get Started</button>
+          <button class="btn btn-ghost" id="viewExamplesBtn" type="button" style="padding:14px 32px; color:var(--warm-parchment);">View Examples</button>
+        </div>
       </div>
-
     </section>
 
-    <section id="how-it-works" class="step-section">
-      <h2 class="section-title">How It Works</h2>
-      <p class="section-sub">Get your developer portfolio live in four simple steps.</p>
-      <div class="steps-vertical">
-        <div class="step-row">
-          <div class="step-row-left">
-            <div class="step-num" style="background: var(--surface-container-high); color: var(--on-surface);">1</div>
-            <div class="step-connector"></div>
+    <section id="how-it-works" class="step-section" style="padding-top:var(--section-gap); border-top:1px solid var(--border-ghost);">
+      <div style="margin-bottom:80px;">
+        <h2 class="section-title" style="text-align:left; margin:0 0 16px;">Frictionless deployment.</h2>
+        <p class="section-sub" style="text-align:left; margin:0; max-width:560px;">From repository to a live, beautiful portfolio without writing a single line of code.</p>
+      </div>
+      <div class="how-it-works-grid">
+        <div class="how-it-works-steps">
+          <div class="how-step">
+            <div class="how-step-icon"><span class="material-symbols-outlined" style="font-size:24px;">terminal</span></div>
+            <div>
+              <h3>1. Connect Account</h3>
+              <p>Authorize access to your GitHub account and install the OneClick Portfolio app.</p>
+            </div>
           </div>
-          <div class="step-row-body">
-            <span class="tag">Step 1</span>
-            <h3>Connect GitHub</h3>
-            <p>Authorize the One Click Portfolio Bot with your GitHub account. We use scoped permissions to create a new repository and set up GitHub Pages automatically.</p>
+          <div class="how-step">
+            <div class="how-step-icon"><span class="material-symbols-outlined" style="font-size:24px;">description</span></div>
+            <div>
+              <h3>2. Import Resume</h3>
+              <p>Upload or import your resume data to populate your portfolio with your professional information.</p>
+            </div>
           </div>
-        </div>
-        <div class="step-row">
-          <div class="step-row-left">
-            <div class="step-num" style="background: #eef2ff; color: #3730a3;">2</div>
-            <div class="step-connector"></div>
+          <div class="how-step">
+            <div class="how-step-icon"><span class="material-symbols-outlined" style="font-size:24px;">palette</span></div>
+            <div>
+              <h3>3. Select Theme</h3>
+              <p>Choose from our curated collection of editorial themes designed specifically for technical portfolios.</p>
+            </div>
           </div>
-          <div class="step-row-body">
-            <span class="tag" style="background: #eef2ff; color: #3730a3;">Step 2</span>
-            <h3>Import Data</h3>
-            <p>Create your resume on <a href="https://rxresu.me" target="_blank" style="text-decoration: underline;">rxresu.me</a> and export the <strong>JSON</strong>, or upload a PDF and let AI parse it for you.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-row-left">
-            <div class="step-num" style="background: #fdf4ff; color: #7e22ce;">3</div>
-            <div class="step-connector"></div>
-          </div>
-          <div class="step-row-body">
-            <span class="tag" style="background: #fdf4ff; color: #7e22ce;">Step 3</span>
-            <h3>Choose a Theme</h3>
-            <p>Pick a design that fits your style — from clean and minimal to bold and graphic. Preview each theme before committing.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-row-left">
-            <div class="step-num" style="background: #ecfdf5; color: #065f46;">4</div>
-          </div>
-          <div class="step-row-body">
-            <span class="tag" style="background: #ecfdf5; color: #065f46;">Step 4</span>
-            <h3>One-Click Deploy</h3>
-            <p>Name your repository and click deploy. Your portfolio will be live at <code>username.github.io/repo</code> in seconds.</p>
+          <div class="how-step">
+            <div class="how-step-icon"><span class="material-symbols-outlined" style="font-size:24px;">rocket_launch</span></div>
+            <div>
+              <h3>4. Deploy Portfolio</h3>
+              <p>One click deploys your portfolio live to GitHub Pages. Updates publish automatically with every commit.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="theme-showcase" class="step-section theme-showcase">
-      <h2 class="section-title">Theme Showcase</h2>
-      <p class="section-sub">Browse available themes. Theme selection is enabled in Step 3.</p>
+    <section id="theme-showcase" class="step-section theme-showcase" style="padding-top:var(--section-gap); border-top:1px solid var(--border-ghost);">
+      <div class="editorial-header">
+        <div>
+          <h2 class="section-title" style="text-align:left; margin:0 0 8px; font-size:40px;">Editorial Themes.</h2>
+          <p class="section-sub" style="text-align:left; margin:0;">Crafted for readability and quiet confidence. Click to select.</p>
+        </div>
+      </div>
       <div class="theme-showcase-carousel">
         <div class="theme-showcase-backdrop" id="themeShowcaseBackdrop" aria-hidden="true"></div>
         <div class="theme-showcase-meta" id="themeShowcaseMeta" aria-live="polite">
@@ -1440,13 +1794,16 @@
           <button class="btn" id="themeShowcasePrevBtn" type="button" aria-label="Previous theme">←</button>
           <button class="btn" id="themeShowcaseNextBtn" type="button" aria-label="Next theme">→</button>
         </div>
-        <div class="theme-grid" id="themeShowcaseGrid" aria-label="Theme showcase">
+        <div class="theme-grid" id="themeShowcaseGrid" role="radiogroup" aria-label="Theme showcase and selection">
           <p class="theme-loading" id="themeShowcaseLoadingMsg" style="grid-column:1/-1;text-align:center;color:var(--on-surface-variant);font-size:14px;padding:40px 0;">Loading themes…</p>
         </div>
         <div class="theme-showcase-dots" id="themeShowcaseDots" aria-label="Theme carousel pagination"></div>
       </div>
-      <div class="showcase-cta">
-        <button class="btn btn-primary" id="focusStepsBtn" type="button">Get Started</button>
+      <div class="showcase-cta" id="showcaseCtaContainer" style="display:none;">
+        <p class="showcase-selection-status" id="showcaseSelectionStatus" style="text-align:center;margin-bottom:16px;color:var(--ash-gray);font-size:16px;">
+          <span id="selectedThemeName" style="font-weight:500;"></span> selected
+        </p>
+        <button class="btn btn-primary" id="focusStepsBtn" type="button">Continue to Setup →</button>
       </div>
     </section>
     </div>
@@ -1508,23 +1865,25 @@
         </article>
         <div class="or-divider" aria-hidden="true">[OR]</div>
         <article class="panel">
-          <h3>rxresu.me JSON</h3>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <h3 style="margin: 8px;">rxresu.me JSON</h3>
+            <p><button class="btn btn-ghost" id="jsonHowBtn" type="button" style="flex: 0 0 auto;">How?</button></p>
+          </div>
           <p>Upload your exported resume JSON. We validate it against the official schema.</p>
           <input class="field" id="resumeJsonFile" type="file" accept="application/json" />
           <button class="btn" id="validateResumeBtn" type="button" style="width: 100%;">Validate</button>
           <p class="upload-status" id="resumeUploadStatus">No JSON validated yet.</p>
-        </article>
-      </div>
-      <div>
-        <article class="panel">
-          <h3>How to Export from rxresu.me</h3>
-          <p>Export your resume JSON from the editor, then upload it here.</p>
-          <a class="btn" href="https://rxresu.me" target="_blank" rel="noopener">Open rxresu.me</a>
-          <ul class="mini-list" style="margin-top: 10px;">
-            <li>Go to your resume in the rxresu.me.</li>
-            <li>Use the export/download action for JSON format.</li>
-            <li>Upload that downloaded file above and validate it.</li>
-          </ul>
+          
+          <article class="panel" id="jsonHowPanel" style="margin-top: 16px; display: none; background: var(--surface-container); border: 1px solid var(--mist-border);">
+            <h4 style="margin: 0 0 12px; font-size: 16px; font-weight: 500; color: var(--warm-parchment);">How to Export from rxresu.me</h4>
+            <p style="margin: 0 0 12px; font-size: 16px; color: var(--ash-gray);">Export your resume JSON from the editor, then upload it here.</p>
+            <a class="btn" href="https://rxresu.me" target="_blank" rel="noopener">Open rxresu.me</a>
+            <ul class="mini-list" style="margin-top: 10px;">
+              <li>Go to your resume in the rxresu.me.</li>
+              <li>Use the export/download action for JSON format.</li>
+              <li>Upload that downloaded file above and validate it.</li>
+            </ul>
+          </article>
         </article>
       </div>
       <div class="step-nav" style="margin-top: 32px;">
@@ -1534,13 +1893,20 @@
     </section>
 
     <section id="theme-step" class="step-section" hidden>
-      <h2 class="section-title">Step 3: Choose a Theme</h2>
-      <p class="section-sub">Select one theme for deployment.</p>
-      <div class="theme-grid" id="themeGrid" role="radiogroup" aria-label="Theme selection">
-        <p class="theme-loading" id="themeLoadingMsg" style="grid-column:1/-1;text-align:center;color:var(--on-surface-variant);font-size:14px;padding:40px 0;">Loading themes…</p>
+      <h2 class="section-title">Step 3: Select Your Theme</h2>
+      <p class="section-sub">Choose an editorial theme for your portfolio. Click a theme to select it.</p>
+      <div class="theme-showcase-carousel" style="margin-bottom: 24px;">
+        <div class="theme-showcase-backdrop" id="themeStepBackdrop" aria-hidden="true"></div>
+        <div class="theme-showcase-meta" id="themeStepMeta" aria-live="polite">
+          <h4 id="themeStepMetaTitle">Select a theme</h4>
+          <p id="themeStepMetaSubtitle">Choose from editorial themes</p>
+        </div>
+        <div class="theme-grid" id="themeStepGrid" role="radiogroup" aria-label="Theme selection">
+          <p style="grid-column:1/-1;text-align:center;color:var(--on-surface-variant);font-size:14px;padding:40px 0;">Loading themes…</p>
+        </div>
       </div>
       <div class="step-nav" style="margin-top: 24px;">
-        <button class="btn btn-ghost" type="button" data-go-step="2">← Back</button>
+        <button class="btn btn-ghost" type="button" data-go-step="2">← Back to Import</button>
         <button class="btn btn-primary" id="themeContinueBtn" type="button">Continue to Deployment →</button>
       </div>
     </section>
@@ -1549,7 +1915,7 @@
       <h2 class="section-title">Step 4: Deploy Your Portfolio</h2>
       <p class="section-sub">Set a repository name and deploy to GitHub Pages.</p>
       <div class="step-nav" style="margin-top: 0; margin-bottom: 8px;">
-        <button class="btn btn-ghost" type="button" data-go-step="3">← Back to Themes</button>
+        <button class="btn btn-ghost" type="button" data-go-step="1">← Back to Start</button>
       </div>
       <div class="deploy-layout">
         <article class="panel">
@@ -1584,27 +1950,121 @@
           </div>
         </article>
 
-        <article class="panel">
-          <h3>What you get</h3>
-          <p>Simple static output that is fast and easy to customize.</p>
-          <ul class="mini-list">
-            <li>Uses your rxresu.me resume data.</li>
-            <li>Deploys static files for fast loading.</li>
-            <li>Themes are lightweight and easy to edit.</li>
-          </ul>
-          <div
-            style="margin-top: 14px; border: 1px solid #111; border-radius: 12px; padding: 12px; background: #fafafa;">
-            <strong id="footerName">One-Click Portfolio</strong>
-            <p style="margin: 8px 0 0; font-size: 12px; color: #555;">Open source portfolio deployment for GitHub Pages.
-            </p>
+        <article class="panel deploy-preview-panel" id="deployPreviewPanel">
+          <div class="deploy-preview-top">
+            <span class="eyebrow">Preview</span>
+            <span class="deploy-preview-badge" id="deployPreviewBadge">Idle</span>
+          </div>
+          <h3 id="deployPreviewTitle">Your live portfolio will appear here.</h3>
+          <p id="deployPreviewDescription">Deploy your selected theme to load a live preview. While you wait, this panel can show the selected theme and deployment progress.</p>
+
+          <div class="deploy-preview-shell" id="deployPreviewShell">
+            <div class="deploy-preview-empty" id="deployPreviewEmpty">
+              <img id="deployPreviewThemeImage" class="deploy-preview-theme-image" src="" alt="Selected theme preview" hidden />
+              <div class="deploy-preview-empty-copy" id="deployPreviewEmptyCopy">
+                Choose a theme, then deploy to preview the published site here.
+              </div>
+            </div>
+
+            <div class="deploy-preview-loading" id="deployPreviewLoading" hidden>
+              <div class="deploy-preview-browser-chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="deploy-preview-loading-body">
+                <div class="deploy-preview-loader-ring" aria-hidden="true"></div>
+                <p class="deploy-preview-loading-title" id="deployPreviewLoadingTitle">Preparing deployment…</p>
+                <p class="deploy-preview-loading-copy" id="deployPreviewLoadingCopy">Creating repository and pushing files…</p>
+              </div>
+            </div>
+
+            <div class="deploy-preview-live" id="deployPreviewLive" hidden>
+              <div class="deploy-preview-frame-bar">
+                <span class="deploy-preview-frame-url" id="deployPreviewFrameUrl">Waiting for live site…</span>
+              </div>
+              <div class="deploy-preview-frame-wrap">
+                <div class="deploy-preview-frame-loading" id="deployPreviewFrameLoading">Loading live preview…</div>
+                <iframe id="deployPreviewFrame" title="Live portfolio preview" loading="lazy" referrerpolicy="no-referrer"></iframe>
+              </div>
+            </div>
+
+            <div class="deploy-preview-error" id="deployPreviewError" hidden>
+              <p class="deploy-preview-error-title">Preview unavailable</p>
+              <p class="deploy-preview-error-copy" id="deployPreviewErrorCopy">Try deployment again or open the live site in a new tab.</p>
+            </div>
+          </div>
+
+          <div class="deploy-preview-actions">
+            <a class="btn btn-ghost" id="deployPreviewOpenBtn" href="#" target="_blank" rel="noopener" hidden>Open live site</a>
+            <a class="btn btn-ghost" id="deployPreviewRepoBtn" href="#" target="_blank" rel="noopener" hidden>Open repository</a>
           </div>
         </article>
       </div>
     </section>
 
-    <footer class="footer">
-      <span>Open Source · GitHub Pages</span>
-      <span id="footerTag">Import, theme, deploy.</span>
+    <section id="info-center" class="step-section" style="padding-top:var(--section-gap); border-top:1px solid var(--border-ghost);">
+      <div class="info-header">
+        <div>
+          <h2 class="section-title" style="text-align:left; margin:0 0 16px;">Policies and common questions.</h2>
+          <p class="section-sub" style="text-align:left; margin:0; max-width:720px;">A few practical notes on privacy, usage, and deployment before you publish your portfolio.</p>
+        </div>
+        <a class="btn btn-ghost info-back-link" href="#top">Back to top</a>
+      </div>
+      <div class="info-grid">
+        <article class="panel info-card" id="privacy">
+          <span class="eyebrow">Privacy</span>
+          <h3>How your data is used</h3>
+          <p>One-Click Portfolio uses the GitHub access you approve to create and publish your portfolio repository. Resume files uploaded during setup are used only to validate or parse the content needed for this flow.</p>
+          <p>This is not meant to be long-term document storage. Upload only the information you want reviewed, transformed, and potentially published in your portfolio.</p>
+        </article>
+
+        <article class="panel info-card" id="terms">
+          <span class="eyebrow">Terms</span>
+          <h3>Use of the service</h3>
+          <p>Use One-Click Portfolio only with content you own or have permission to publish. You remain responsible for the resume data you upload, the repository that is created, and the final site published to GitHub Pages.</p>
+          <p>The service is provided as-is for portfolio generation. Features, themes, and deployment behavior may change over time.</p>
+        </article>
+
+        <article class="panel info-card" id="faq">
+          <span class="eyebrow">FAQ</span>
+          <h3>Deployment questions</h3>
+          <div class="faq-list">
+            <div class="faq-item">
+              <h4>What access does the GitHub App need?</h4>
+              <p>You need to log in with GitHub and install the OneClick Portfolio GitHub App so it can create and publish your portfolio repository. For the smoothest setup, give the app access to all repositories, as noted during onboarding.</p>
+            </div>
+            <div class="faq-item">
+              <h4>What happens during deployment?</h4>
+              <p>After you validate or parse your resume and choose a theme, deployment creates a GitHub repository, applies the selected theme output, and publishes the site to GitHub Pages. The repository stays in your GitHub account for later edits.</p>
+            </div>
+            <div class="faq-item">
+              <h4>What if deployment fails?</h4>
+              <p>Most failures come from incomplete GitHub authentication, missing app permissions, or a repository name conflict. Reconnect GitHub, confirm the app installation, choose a different repository name if needed, and try again.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <article class="panel support-card" id="support">
+        <div>
+          <span class="eyebrow">Support</span>
+          <h3>Need help with setup or deployment?</h3>
+          <p>If you run into authentication, GitHub App, or deployment issues, use the project repository as the primary support channel. Include the step you were on, what you tried, and any error message you saw.</p>
+        </div>
+        <div class="support-actions">
+          <a class="btn" href="https://github.com/oneclick-portfolio/oneclick-portfolio.github.io/issues" target="_blank" rel="noopener">Open GitHub Issues</a>
+          <a class="btn btn-ghost" href="https://github.com/oneclick-portfolio/oneclick-portfolio.github.io" target="_blank" rel="noopener">View Repository</a>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer" style="margin-top:128px; padding:80px 0;">
+      <span>© 2026 One-Click Portfolio. Grounded in simplicity.</span>
+      <nav style="display:flex; gap:24px;">
+        <a href="#privacy" style="color:var(--stone-gray); transition:color 0.3s;">Privacy</a>
+        <a href="#terms" style="color:var(--stone-gray); transition:color 0.3s;">Terms</a>
+        <a href="#support" style="color:var(--stone-gray); transition:color 0.3s;">Support</a>
+        <a href="https://github.com/oneclick-portfolio/oneclick-portfolio.github.io" target="_blank" rel="noopener" style="color:var(--stone-gray); transition:color 0.3s;">Github</a>
+        <a href="#faq" style="color:var(--stone-gray); transition:color 0.3s;">FAQ</a>
+      </nav>
     </footer>
   </main>
 
@@ -1644,7 +2104,7 @@
 
       const themesRoot = window.CONFIG && window.CONFIG.deploy && window.CONFIG.deploy.themesRoot;
       const themePreviewBase = (window.CONFIG && window.CONFIG.deploy && window.CONFIG.deploy.themePreviewBase) || '';
-      const selectGrid = document.getElementById('themeGrid');
+      const selectGrid = document.getElementById('themeStepGrid');
       const selectLoadingMsg = document.getElementById('themeLoadingMsg');
       const showcaseGrid = document.getElementById('themeShowcaseGrid');
       const showcaseLoadingMsg = document.getElementById('themeShowcaseLoadingMsg');
@@ -1662,6 +2122,45 @@
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let scrollRaf = 0;
       const showcaseThemeData = [];
+
+      function updateShowcaseSelection(themeName, displayName, previewUrl) {
+        // Store selection in session storage
+        sessionStorage.setItem('selected-theme-name', themeName);
+        sessionStorage.setItem('selected-theme-display', displayName);
+        if (previewUrl) sessionStorage.setItem('selected-theme-preview', previewUrl);
+        
+        // Update UI
+        const showcaseCtaContainer = document.getElementById('showcaseCtaContainer');
+        const selectedThemeName = document.getElementById('selectedThemeName');
+        const themeStepDisplayName = document.getElementById('themeStepDisplayName');
+        const themeStepPreview = document.getElementById('themeStepPreview');
+        const themeStepName = document.getElementById('themeStepName');
+        
+        if (selectedThemeName) selectedThemeName.textContent = displayName;
+        if (themeStepDisplayName) themeStepDisplayName.textContent = displayName;
+        if (themeStepName) themeStepName.textContent = displayName;
+        if (themeStepPreview && previewUrl) {
+          themeStepPreview.src = previewUrl;
+          themeStepPreview.style.display = 'block';
+        }
+        if (showcaseCtaContainer) showcaseCtaContainer.style.display = 'block';
+        
+        // Update the main theme selection for deployment
+        const themeGrid = document.getElementById('themeStepGrid');
+        if (themeGrid) {
+          const radio = themeGrid.querySelector('input[name="theme-step"][value="' + themeName + '"]')
+            || themeGrid.querySelector('input[name="theme"][value="' + themeName + '"]');
+          if (radio) radio.checked = true;
+        }
+      }
+
+      function updateThemeStepDisplay(displayName) {
+        // Update Step 3 meta display
+        const themeStepMetaTitle = document.getElementById('themeStepMetaTitle');
+        if (themeStepMetaTitle) {
+          themeStepMetaTitle.textContent = displayName;
+        }
+      }
 
       function showcaseCards() {
         return showcaseGrid ? Array.from(showcaseGrid.querySelectorAll('.theme-card')) : [];
@@ -1852,12 +2351,15 @@
 
         if (showcaseGrid) {
           showcaseThemeData.push({
+            name: name,
             displayName: displayName,
-            screenshotUrl: screenshotUrl
+            screenshotUrl: screenshotUrl,
+            gradient: gradient
           });
 
           const showcaseCard = document.createElement('article');
           showcaseCard.className = 'theme-card';
+          showcaseCard.dataset.themeName = name;
           showcaseCard.style.animation = 'rise 0.35s ease ' + (idx * 60) + 'ms both';
           showcaseCard.innerHTML =
             '<div class="theme-preview" style="background:' + gradient + ';">' +
@@ -1873,9 +2375,60 @@
           showcaseImg.addEventListener('load', function () { showcaseImg.classList.add('loaded'); });
           showcaseImg.addEventListener('error', function () { showcaseImg.style.display = 'none'; });
 
+          // Showcase carousel is view-only - no selection here
           showcaseGrid.appendChild(showcaseCard);
         }
       });
+
+      // Populate Step 3 theme selection grid (after showcase themes are loaded)
+      const themeStepGrid = document.getElementById('themeStepGrid');
+      if (themeStepGrid && showcaseThemeData.length > 0) {
+        // Clear loading message
+        themeStepGrid.innerHTML = '';
+
+        showcaseThemeData.forEach(function (theme, idx) {
+          const name = theme.name;
+          const displayName = theme.displayName;
+          const screenshotUrl = theme.screenshotUrl;
+          const gradient = theme.gradient;
+          const isFirst = idx === 0;
+
+          const themeCard = document.createElement('article');
+          themeCard.className = 'theme-card';
+          themeCard.dataset.themeName = name;
+          themeCard.style.animation = 'rise 0.35s ease ' + (idx * 60) + 'ms both';
+          themeCard.innerHTML =
+            '<div class="theme-preview" style="background:' + gradient + ';">' +
+              '<img src="' + screenshotUrl + '" alt="' + displayName + ' theme preview" loading="lazy" />' +
+            '</div>' +
+            '<div class="theme-body">' +
+              '<div class="theme-top" style="justify-content:center;">' +
+                '<h3 class="theme-name">' + displayName + '</h3>' +
+              '</div>' +
+              '<label class="radio" style="justify-content:center;margin-top:8px;"><input type="radio" name="theme-step" value="' + name + '"' + (isFirst ? ' checked' : '') + ' /> Select</label>' +
+            '</div>';
+
+          const themeImg = themeCard.querySelector('img');
+          themeImg.addEventListener('load', function () { themeImg.classList.add('loaded'); });
+          themeImg.addEventListener('error', function () { themeImg.style.display = 'none'; });
+
+          // Add selection handlers for Step 3
+          const radioInput = themeCard.querySelector('input[type="radio"]');
+          themeCard.addEventListener('click', function() {
+            radioInput.checked = true;
+            updateShowcaseSelection(name, displayName, screenshotUrl);
+            updateThemeStepDisplay(displayName);
+          });
+          radioInput.addEventListener('change', function() {
+            if (this.checked) {
+              updateShowcaseSelection(name, displayName, screenshotUrl);
+              updateThemeStepDisplay(displayName);
+            }
+          });
+
+          themeStepGrid.appendChild(themeCard);
+        });
+      }
 
       if (showcasePrevBtn) {
         showcasePrevBtn.addEventListener('click', () => scrollShowcase(-1));
@@ -1907,6 +2460,33 @@
       }
 
       startShowcaseAuto();
+
+      // Initialize carousel selection state and restore previous selection if available
+      (function() {
+        const savedThemeName = sessionStorage.getItem('selected-theme-name');
+        const savedThemeDisplay = sessionStorage.getItem('selected-theme-display');
+        const savedThemePreview = sessionStorage.getItem('selected-theme-preview');
+        if (savedThemeName && savedThemeDisplay) {
+          // Restore in Step 3 grid if it's populated
+          const themeStepGrid = document.getElementById('themeStepGrid');
+          if (themeStepGrid) {
+            const stepRadio = themeStepGrid.querySelector('input[type="radio"][value="' + savedThemeName + '"]');
+            if (stepRadio) {
+              stepRadio.checked = true;
+              updateThemeStepDisplay(savedThemeDisplay);
+            }
+          }
+          // Also restore in showcase if available
+          if (showcaseGrid) {
+            const radio = showcaseGrid.querySelector('input[type="radio"][value="' + savedThemeName + '"]');
+            if (radio) {
+              radio.checked = true;
+            }
+          }
+          // Update deployment form
+          updateShowcaseSelection(savedThemeName, savedThemeDisplay, savedThemePreview);
+        }
+      })();
 
       if (selectGrid) {
         // Notify main script that step-3 theme inputs are ready
@@ -1942,6 +2522,23 @@
       const copyLinkBtn = document.getElementById('copyLinkBtn');
       const viewRepoLink = document.getElementById('viewRepoLink');
       const manageSiteLink = document.getElementById('manageSiteLink');
+      const deployPreviewBadge = document.getElementById('deployPreviewBadge');
+      const deployPreviewTitle = document.getElementById('deployPreviewTitle');
+      const deployPreviewDescription = document.getElementById('deployPreviewDescription');
+      const deployPreviewThemeImage = document.getElementById('deployPreviewThemeImage');
+      const deployPreviewEmpty = document.getElementById('deployPreviewEmpty');
+      const deployPreviewEmptyCopy = document.getElementById('deployPreviewEmptyCopy');
+      const deployPreviewLoading = document.getElementById('deployPreviewLoading');
+      const deployPreviewLoadingTitle = document.getElementById('deployPreviewLoadingTitle');
+      const deployPreviewLoadingCopy = document.getElementById('deployPreviewLoadingCopy');
+      const deployPreviewLive = document.getElementById('deployPreviewLive');
+      const deployPreviewFrame = document.getElementById('deployPreviewFrame');
+      const deployPreviewFrameUrl = document.getElementById('deployPreviewFrameUrl');
+      const deployPreviewFrameLoading = document.getElementById('deployPreviewFrameLoading');
+      const deployPreviewError = document.getElementById('deployPreviewError');
+      const deployPreviewErrorCopy = document.getElementById('deployPreviewErrorCopy');
+      const deployPreviewOpenBtn = document.getElementById('deployPreviewOpenBtn');
+      const deployPreviewRepoBtn = document.getElementById('deployPreviewRepoBtn');
       const authStatusTitle = document.getElementById('authStatusTitle');
       const topbarDisconnectBtn = document.getElementById('topbarDisconnectBtn');
       const authLoginState = document.getElementById('authLoginState');
@@ -1950,18 +2547,21 @@
       const resumeJsonFileInput = document.getElementById('resumeJsonFile');
       const validateResumeBtn = document.getElementById('validateResumeBtn');
       const resumeUploadStatus = document.getElementById('resumeUploadStatus');
+      const jsonHowBtn = document.getElementById('jsonHowBtn');
+      const jsonHowPanel = document.getElementById('jsonHowPanel');
 
       const resumePdfFileInput = document.getElementById('resumePdfFile');
       const parsePdfBtn = document.getElementById('parsePdfBtn');
       const pdfParseStatus = document.getElementById('pdfParseStatus');
 
       const themeContinueBtn = document.getElementById('themeContinueBtn');
-      const themeGrid = document.getElementById('themeGrid');
+      const themeGrid = document.getElementById('themeStepGrid');
       const authSection = document.getElementById('auth');
       const importSection = document.getElementById('import-data');
       const themeSection = document.getElementById('theme-step');
       const deploymentSection = document.getElementById('deployment');
       const DEMO_MODE = Boolean(window.CONFIG && window.CONFIG.demoMode);
+      const THEME_PREVIEW_BASE = (window.CONFIG && window.CONFIG.deploy && window.CONFIG.deploy.themePreviewBase) || '';
       const preStepsContent = document.getElementById('preStepsContent');
       const focusStepsBtn = document.getElementById('focusStepsBtn');
       const topbarGetStartedBtn = document.getElementById('topbarGetStartedBtn');
@@ -2019,20 +2619,47 @@
 
       function setResumeStatus(text, isError) {
         resumeUploadStatus.textContent = text;
-        resumeUploadStatus.style.color = isError ? '#a82020' : '#2f5c57';
+        resumeUploadStatus.style.color = isError ? '#ffb4ab' : '#afaeac';
       }
 
       function setPdfStatus(text, isError) {
         pdfParseStatus.textContent = text;
-        pdfParseStatus.style.color = isError ? '#a82020' : '#2f5c57';
+        pdfParseStatus.style.color = isError ? '#ffb4ab' : '#afaeac';
       }
 
       function selectedTheme() {
-        const checked = document.querySelector('input[name="theme"]:checked');
+        const checked = document.querySelector('#themeStepGrid input[name="theme-step"]:checked')
+          || document.querySelector('input[name="theme"]:checked');
         if (checked) return checked.value;
         // Fall back to first available radio (themes may still be loading)
-        const first = document.querySelector('input[name="theme"]');
+        const first = document.querySelector('#themeStepGrid input[name="theme-step"]')
+          || document.querySelector('input[name="theme"]');
         return first ? first.value : '';
+      }
+
+      function formatThemeDisplayName(themeName) {
+        if (!themeName) return 'Selected theme';
+        return themeName.charAt(0).toUpperCase() + themeName.slice(1).replace(/[-_]/g, ' ');
+      }
+
+      function selectedThemeDisplayName() {
+        return sessionStorage.getItem('selected-theme-display') || formatThemeDisplayName(selectedTheme());
+      }
+
+      function selectedThemeScreenshotUrl() {
+        const selectedCard = document.querySelector('#themeStepGrid input[name="theme-step"]:checked')
+          || document.querySelector('#themeStepGrid input[name="theme"]:checked');
+        if (selectedCard) {
+          const card = selectedCard.closest('.theme-card');
+          const image = card && card.querySelector('img');
+          if (image && image.src) return image.src;
+        }
+        return sessionStorage.getItem('selected-theme-preview') || '';
+      }
+
+      function previewUrlForTheme(themeName) {
+        if (!THEME_PREVIEW_BASE || !themeName) return '';
+        return THEME_PREVIEW_BASE.replace(/\/$/, '') + '/' + themeName.replace(/^\/+/, '');
       }
 
       function syncRepoNameFromTheme() {
@@ -2050,6 +2677,92 @@
         deployStatusLine.textContent = text;
       }
 
+      function setDeployPreviewBadge(text) {
+        if (deployPreviewBadge) deployPreviewBadge.textContent = text;
+      }
+
+      function setDeployPreviewIdle() {
+        const displayName = selectedThemeDisplayName();
+        const screenshotUrl = selectedThemeScreenshotUrl();
+
+        setDeployPreviewBadge('Idle');
+        if (deployPreviewTitle) deployPreviewTitle.textContent = displayName + ' is ready to publish.';
+        if (deployPreviewDescription) deployPreviewDescription.textContent = 'Deploy your selected theme to load the live site here. Until then, you can review the selected theme on the right.';
+        if (deployPreviewEmptyCopy) deployPreviewEmptyCopy.textContent = 'Deploy to replace this still preview with the published site.';
+
+        if (deployPreviewThemeImage) {
+          if (screenshotUrl) {
+            deployPreviewThemeImage.src = screenshotUrl;
+            deployPreviewThemeImage.hidden = false;
+          } else {
+            deployPreviewThemeImage.hidden = true;
+            deployPreviewThemeImage.removeAttribute('src');
+          }
+        }
+
+        if (deployPreviewEmpty) deployPreviewEmpty.hidden = false;
+        if (deployPreviewLoading) deployPreviewLoading.hidden = true;
+        if (deployPreviewLive) deployPreviewLive.hidden = true;
+        if (deployPreviewError) deployPreviewError.hidden = true;
+        if (deployPreviewFrame) deployPreviewFrame.src = 'about:blank';
+        if (deployPreviewFrameLoading) {
+          deployPreviewFrameLoading.hidden = false;
+          deployPreviewFrameLoading.textContent = 'Loading live preview…';
+        }
+        if (deployPreviewFrameUrl) deployPreviewFrameUrl.textContent = 'Waiting for live site…';
+      }
+
+      function setDeployPreviewLoading(title, copy, badge) {
+        setDeployPreviewBadge(badge || 'Publishing');
+        if (deployPreviewTitle) deployPreviewTitle.textContent = title || 'Building your portfolio.';
+        if (deployPreviewDescription) deployPreviewDescription.textContent = 'The live site will appear here as soon as deployment finishes.';
+        if (deployPreviewLoadingTitle) deployPreviewLoadingTitle.textContent = title || 'Building your portfolio.';
+        if (deployPreviewLoadingCopy) deployPreviewLoadingCopy.textContent = copy || 'Creating repository and pushing files…';
+
+        if (deployPreviewEmpty) deployPreviewEmpty.hidden = true;
+        if (deployPreviewLoading) deployPreviewLoading.hidden = false;
+        if (deployPreviewLive) deployPreviewLive.hidden = true;
+        if (deployPreviewError) deployPreviewError.hidden = true;
+      }
+
+      function setDeployPreviewLive(previewUrl, repositoryUrl) {
+        const liveUrl = previewUrl || '#';
+        setDeployPreviewBadge('Live');
+        if (deployPreviewTitle) deployPreviewTitle.textContent = 'Your portfolio is live.';
+        if (deployPreviewDescription) deployPreviewDescription.textContent = 'The published site is loaded below. You can open it in a new tab at any time.';
+        if (deployPreviewFrameUrl) deployPreviewFrameUrl.textContent = liveUrl;
+        if (deployPreviewFrameLoading) {
+          deployPreviewFrameLoading.hidden = false;
+          deployPreviewFrameLoading.textContent = 'Loading live preview…';
+        }
+        if (deployPreviewOpenBtn) {
+          deployPreviewOpenBtn.hidden = false;
+          deployPreviewOpenBtn.href = liveUrl;
+        }
+        if (deployPreviewRepoBtn) {
+          deployPreviewRepoBtn.hidden = false;
+          deployPreviewRepoBtn.href = repositoryUrl || REPO_URL;
+        }
+
+        if (deployPreviewFrame) deployPreviewFrame.src = liveUrl;
+        if (deployPreviewEmpty) deployPreviewEmpty.hidden = true;
+        if (deployPreviewLoading) deployPreviewLoading.hidden = true;
+        if (deployPreviewLive) deployPreviewLive.hidden = false;
+        if (deployPreviewError) deployPreviewError.hidden = true;
+      }
+
+      function setDeployPreviewError(message) {
+        setDeployPreviewBadge('Retry');
+        if (deployPreviewTitle) deployPreviewTitle.textContent = 'Preview unavailable.';
+        if (deployPreviewDescription) deployPreviewDescription.textContent = 'Deployment did not finish cleanly. Review the message below and try again.';
+        if (deployPreviewErrorCopy) deployPreviewErrorCopy.textContent = message || 'Try deployment again or open the live site in a new tab.';
+
+        if (deployPreviewEmpty) deployPreviewEmpty.hidden = true;
+        if (deployPreviewLoading) deployPreviewLoading.hidden = true;
+        if (deployPreviewLive) deployPreviewLive.hidden = true;
+        if (deployPreviewError) deployPreviewError.hidden = false;
+      }
+
       function hideDeployResult() {
         deployResult.hidden = true;
         deployPagesUrl.href = '#';
@@ -2057,6 +2770,15 @@
         copyLinkBtn.disabled = true;
         viewRepoLink.href = '#';
         manageSiteLink.href = '#';
+        if (deployPreviewOpenBtn) {
+          deployPreviewOpenBtn.hidden = true;
+          deployPreviewOpenBtn.href = '#';
+        }
+        if (deployPreviewRepoBtn) {
+          deployPreviewRepoBtn.hidden = true;
+          deployPreviewRepoBtn.href = '#';
+        }
+        setDeployPreviewIdle();
       }
 
       function formatEta(seconds) {
@@ -2094,6 +2816,7 @@
         if (deployProgressEta) deployProgressEta.textContent = formatEta(totalSeconds);
         if (deployProgressStage) deployProgressStage.textContent = 'Creating repository and pushing files…';
         if (deployProgress) deployProgress.hidden = false;
+        setDeployPreviewLoading('Building your portfolio.', 'Creating repository and pushing files…', 'Publishing');
 
         deployProgressTimer = window.setInterval(() => {
           const elapsed = (Date.now() - deployProgressStartedAt) / 1000;
@@ -2107,6 +2830,7 @@
           if (ratio >= 1) {
             clearDeployProgressTimer();
             if (deployProgressEta) deployProgressEta.textContent = 'Finalizing publish…';
+            setDeployPreviewLoading('Finalizing publish.', 'Preparing the live site preview…', 'Finalizing');
           }
         }, 200);
       }
@@ -2125,6 +2849,7 @@
         if (deployProgressEta) deployProgressEta.textContent = 'Estimating time...';
         if (deployProgressStage) deployProgressStage.textContent = 'Preparing deployment…';
         if (deployProgress) deployProgress.hidden = true;
+        if (deployResult.hidden) setDeployPreviewIdle();
       }
 
       function wait(ms) {
@@ -2194,6 +2919,7 @@
           if (deployProgressEta) {
             deployProgressEta.textContent = formatEta(Math.ceil(remainingMs / 1000));
           }
+          setDeployPreviewLoading('Checking if website is live.', 'Attempt ' + attempts + ' is confirming the published site is reachable.', 'Checking');
 
           const isLive = await pingLiveSiteOnce(pagesUrl, Math.min(10000, intervalMs));
           if (isLive) {
@@ -2221,6 +2947,7 @@
         copyLinkBtn.disabled = false;
         viewRepoLink.href = repositoryUrl;
         manageSiteLink.href = pagesUrl;
+        setDeployPreviewLive(pagesUrl, repositoryUrl);
       }
 
       function setConnectTargets(url, label) {
@@ -2390,9 +3117,27 @@
       if (topbarGetStartedBtn) {
         topbarGetStartedBtn.addEventListener('click', focusOnSteps);
       }
+      const topbarGetStartedBtn2 = document.getElementById('topbarGetStartedBtn2');
+      if (topbarGetStartedBtn2) {
+        topbarGetStartedBtn2.addEventListener('click', focusOnSteps);
+      }
+
+      const viewExamplesBtn = document.getElementById('viewExamplesBtn');
+      if (viewExamplesBtn) {
+        viewExamplesBtn.addEventListener('click', () => {
+          document.getElementById('theme-showcase').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
 
       if (topbarHowItWorksBtn) {
         topbarHowItWorksBtn.addEventListener('click', () => exitFlowAndNavigateTo('how-it-works'));
+      }
+
+      if (jsonHowBtn && jsonHowPanel) {
+        jsonHowBtn.addEventListener('click', () => {
+          jsonHowPanel.style.display = jsonHowPanel.style.display === 'none' ? 'block' : 'none';
+          jsonHowBtn.textContent = jsonHowPanel.style.display === 'none' ? 'How?' : 'Hide';
+        });
       }
 
       if (topbarThemesBtn) {
@@ -2401,6 +3146,12 @@
 
       if (authContinueBtn) {
         authContinueBtn.addEventListener('click', () => setStep(2));
+      }
+
+      if (focusStepsBtn) {
+        focusStepsBtn.addEventListener('click', () => {
+          focusOnSteps();
+        });
       }
 
       if (ghConnectBtn) {
@@ -2417,10 +3168,22 @@
       // Event delegation: works for both static and dynamically added theme radios
       if (themeGrid) {
         themeGrid.addEventListener('change', function (e) {
-          if (e.target && e.target.name === 'theme') syncRepoNameFromTheme();
+          if (e.target && (e.target.name === 'theme-step' || e.target.name === 'theme')) {
+            syncRepoNameFromTheme();
+            setDeployPreviewIdle();
+          }
         });
         // Also wire up once themes are loaded
-        themeGrid.addEventListener('themes-loaded', syncRepoNameFromTheme);
+        themeGrid.addEventListener('themes-loaded', function () {
+          syncRepoNameFromTheme();
+          setDeployPreviewIdle();
+        });
+      }
+
+      if (deployPreviewFrame) {
+        deployPreviewFrame.addEventListener('load', function () {
+          if (deployPreviewFrameLoading) deployPreviewFrameLoading.hidden = true;
+        });
       }
 
       resumeJsonFileInput.addEventListener('change', () => {
@@ -2636,9 +3399,48 @@
         }
       }
 
+      async function simulateDemoDeploy(theme, repositoryName) {
+        const previewUrl = previewUrlForTheme(theme) || selectedThemeScreenshotUrl() || ('https://example.com/' + repositoryName + '/');
+
+        setStatus('demo mode: simulating deployment for ' + theme + '...');
+        setDeployEnabled(false);
+        hideDeployResult();
+        startDeployProgress(Math.min(DEPLOY_REVEAL_SECONDS, 5));
+
+        await wait(900);
+        setDeployProgressValue(48);
+        if (deployProgressStage) deployProgressStage.textContent = 'Generating preview assets…';
+        setDeployPreviewLoading('Building your portfolio.', 'Generating preview assets for the selected theme…', 'Publishing');
+
+        await wait(900);
+        setDeployProgressValue(82);
+        if (deployProgressStage) deployProgressStage.textContent = 'Opening live preview…';
+        setDeployPreviewLoading('Loading preview.', 'Opening the selected theme in the preview panel…', 'Preview');
+
+        await wait(900);
+        completeDeployProgress();
+        setStatus('demo mode: preview ready.');
+        showDeployResult(previewUrl, REPO_URL);
+        setDeployEnabled(true);
+      }
+
       async function deploySelectedTheme() {
+        const theme = selectedTheme();
+        if (!theme) {
+          window.alert('Please select a theme first.');
+          setStep(3);
+          return;
+        }
+
+        const repositoryName = String(repositoryNameInput.value || '').trim();
+        if (!repositoryName) {
+          window.alert('Please enter a repository name.');
+          repositoryNameInput.focus();
+          return;
+        }
+
         if (DEMO_MODE) {
-          window.alert('demo mode is enabled. Deployment is disabled.');
+          await simulateDemoDeploy(theme, repositoryName);
           return;
         }
 
@@ -2653,18 +3455,6 @@
           return;
         }
 
-        const theme = selectedTheme();
-        if (!theme) {
-          window.alert('Please select a theme first.');
-          setStep(3);
-          return;
-        }
-        const repositoryName = String(repositoryNameInput.value || '').trim();
-        if (!repositoryName) {
-          window.alert('Please enter a repository name.');
-          repositoryNameInput.focus();
-          return;
-        }
         const themeRepoLink = THEMES_ROOT ? THEMES_ROOT.replace(/\/$/, '') + '/' + theme : '';
         if (!themeRepoLink) {
           window.alert('Deployment is not configured: themesRoot is missing in config.js.');
@@ -2711,11 +3501,12 @@
           resetDeployProgress();
           setStatus('Deploy failed: ' + error.message);
           hideDeployResult();
+          setDeployPreviewError(error.message);
           window.alert('Deploy failed: ' + error.message);
         } finally {
           await updateAuthStatus();
           setDeployEnabled(isAuthed && currentStep === 4);
-          if (deployResult.hidden) {
+          if (deployResult.hidden && (!deployPreviewError || deployPreviewError.hidden)) {
             resetDeployProgress();
           }
         }
@@ -2761,8 +3552,10 @@
         if (topbarDisconnectBtn) topbarDisconnectBtn.hidden = true;
         setResumeStatus('demo mode active.', false);
         setPdfStatus('demo mode active.', false);
+        currentStep = 4;
         hideDeployResult();
         resetDeployProgress();
+        setDeployEnabled(true);
         isInitialized = true;
         return;
       }

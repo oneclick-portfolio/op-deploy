@@ -4,4 +4,4 @@ node_modules/*
 .env.local
 stitch_exports/*
 .github/*.md
-design_system.json
+stitch_assets/*
